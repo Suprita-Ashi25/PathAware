@@ -1,4 +1,4 @@
-# WomenSafetyPathAI
+# PathAware
 
 
 ## PathAware: Firebase + Google Maps setup
