@@ -1,0 +1,206 @@
+Great! Let’s build the **boilerplate for “Women Safe PathAI”**, combining **React Native frontend**, **Node.js + Python backend**, and **Firebase/Supabase**, along with sensor-based and AI automation support.
+
+---
+
+# 💻 Women Safe PathAI – Boilerplate Codebase (v1 MVP)
+
+## 📦 Project Structure
+
+```
+women-safe-pathai/
+├── client/                  # React Native App (No buttons, AI-driven)
+├── server/                  # Backend (Node.js API)
+├── ai-engine/               # AI services (Python: emotion, scream, NLP)
+├── firebase/                # Firebase config (Auth, Realtime DB, FCM)
+├── supabase/                # Supabase (Optional: DB & Auth)
+├── shared/                  # Shared constants, utils
+├── .env                     # Environment variables
+└── README.md
+```
+
+---
+
+## 1️⃣ `client/` – React Native App (Expo)
+
+### ✅ Setup
+
+```bash
+npx create-expo-app client -t expo-template-blank
+cd client
+npm install expo-location expo-sensors expo-av react-native-gesture-handler
+npm install @react-native-async-storage/async-storage
+```
+
+### ✅ Sample `App.js`
+
+```js
+import React, { useEffect } from 'react';
+import { View, Text, Alert } from 'react-native';
+import * as Location from 'expo-location';
+import { Accelerometer } from 'expo-sensors';
+
+export default function App() {
+  useEffect(() => {
+    (async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert("Permission denied");
+        return;
+      }
+
+      const location = await Location.getCurrentPositionAsync({});
+      console.log('📍 Location:', location);
+    })();
+
+    const subscription = Accelerometer.addListener(accel => {
+      const speed = Math.sqrt(accel.x ** 2 + accel.y ** 2 + accel.z ** 2);
+      if (speed > 2.5) {
+        console.log("🚨 Panic Movement Detected");
+        // TODO: Trigger SOS
+      }
+    });
+
+    return () => subscription.remove();
+  }, []);
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>🛡️ Women Safe PathAI is running</Text>
+    </View>
+  );
+}
+```
+
+---
+
+## 2️⃣ `server/` – Node.js Express Backend
+
+### ✅ Setup
+
+```bash
+mkdir server && cd server
+npm init -y
+npm install express cors dotenv
+```
+
+### ✅ `index.js`
+
+```js
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+app.get('/ping', (req, res) => {
+  res.send("🔗 Backend is alive");
+});
+
+app.listen(4000, () => {
+  console.log('✅ Server running on http://localhost:4000');
+});
+```
+
+---
+
+## 3️⃣ `ai-engine/` – Python AI Engine
+
+### ✅ Setup
+
+```bash
+mkdir ai-engine && cd ai-engine
+python3 -m venv venv
+source venv/bin/activate
+pip install flask whisper torch sounddevice
+```
+
+### ✅ `app.py`
+
+```python
+from flask import Flask, request, jsonify
+import whisper
+
+app = Flask(__name__)
+model = whisper.load_model("base")
+
+@app.route('/speech-to-text', methods=['POST'])
+def transcribe_audio():
+    # Placeholder for future mic input
+    return jsonify({"text": "Help me please!"})
+
+if __name__ == '__main__':
+    app.run(port=5000)
+```
+
+---
+
+## 4️⃣ `firebase/` – Firebase Setup
+
+### ✅ Features
+
+* Auth (email/OTP or anonymous)
+* Realtime DB (for live SOS / location tracking)
+* FCM (notifications)
+
+Use Firebase Console:
+
+* Create project
+* Enable Auth + Firestore + Cloud Messaging
+* Download `google-services.json` for Android or `.plist` for iOS
+
+Then connect to `client/` using `firebase` SDK.
+
+---
+
+## 5️⃣ `.env` – Environment Variables Example
+
+```env
+REACT_APP_API_URL=http://localhost:4000
+REACT_APP_FIREBASE_API_KEY=XXXX
+REACT_APP_GOOGLE_MAPS_KEY=XXXX
+```
+
+---
+
+## ✅ Start Commands
+
+| Layer       | Command                         |
+| ----------- | ------------------------------- |
+| Frontend    | `cd client && npx expo start`   |
+| Backend API | `cd server && node index.js`    |
+| AI Engine   | `cd ai-engine && python app.py` |
+
+---
+
+## ⚡ Ready to Extend
+
+| Feature                | Where to build                   |
+| ---------------------- | -------------------------------- |
+| Panic Shake Detection  | `client/` (React Native sensors) |
+| Auto SOS Trigger       | `client/` → calls `server/alert` |
+| Voice Emotion AI       | `ai-engine/`                     |
+| Route Safety Map       | `client/` + `server/routes`      |
+| Trusted Contact Alerts | Firebase Realtime DB + SMS API   |
+
+---
+
+## 🧠 Want More?
+
+I can now add:
+
+* 📍 Safe Path AI logic
+* 🎤 Whisper integration for voice emotion
+* 🔊 Audio scream detection
+* 🛑 Real SOS alert handler
+* 🌍 Local language voice assistant
+
+Do you want the **next module** to be:
+
+1. Panic + Shake detection with auto SMS
+2. Audio scream detection using Python
+3. Firebase SOS + contact alert
+4. Realtime safe routing map?
+
+Let me know and I’ll build the code for it.

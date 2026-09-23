@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" role="img" aria-labelledby="title desc">
+  <title id="title">PathAware</title>
+  <desc id="desc">PathAware safety route logo with a location pin, shield and path</desc>
+  <defs>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c3aed"/>
+      <stop offset="0.55" stop-color="#4f46e5"/>
+      <stop offset="1" stop-color="#ec4899"/>
+    </linearGradient>
+    <linearGradient id="path" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ec4899"/>
+      <stop offset="1" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(8 8)">
+    <path d="M52 0C23.3 0 0 23.3 0 52c0 37.5 52 52 52 52s52-14.5 52-52C104 23.3 80.7 0 52 0Z" fill="url(#brand)"/>
+    <path d="M52 22c-12.2 0-22 9.8-22 22 0 9.1 5.5 17 13.4 20.3L52 78l8.6-13.7C68.5 61 74 53.1 74 44c0-12.2-9.8-22-22-22Zm0 8c7.7 0 14 6.3 14 14 0 5.8-3.5 10.8-8.5 13L52 62l-5.5-5C41.5 54.8 38 49.8 38 44c0-7.7 6.3-14 14-14Z" fill="#fff" opacity=".96"/>
+    <circle cx="52" cy="44" r="6" fill="#fff"/>
+    <path d="M19 84c12-8 22-10 31-7 10 3 18 2 31-7" fill="none" stroke="url(#path)" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="20" cy="84" r="5" fill="#fbbf24" stroke="#fff" stroke-width="2"/>
+    <circle cx="81" cy="70" r="5" fill="#34d399" stroke="#fff" stroke-width="2"/>
+  </g>
+  <text x="128" y="65" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="48" font-weight="800" fill="#172554">Path<tspan fill="#7c3aed">Aware</tspan></text>
+  <text x="130" y="91" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="600" letter-spacing="3" fill="#64748b">SMARTER ROUTES • SAFER JOURNEYS</text>
+</svg>
